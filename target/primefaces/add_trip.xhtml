@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+        "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:comp="http://java.sun.com/jsf/composite/composite">
+<h:head>
+</h:head>
+<f:view>
+    <ui:composition template = "templates/dataEdit.xhtml">
+        <ui:define name="header" style="margin-bottom: 40px;">
+            <h2 style="font-family: 'Candara'; font-size: 30px;"> Add new trip </h2>
+        </ui:define>
+
+        <ui:define name="editing_fields">
+            <h:panelGrid cellpadding="5" columns="1" style="margin-bottom:10px">
+                    <p:outputLabel for="starting_time" value="Starting time:" />
+                    <p:inputText id="starting_time" value="#{tripsView.tripDTO.startingTime}"/>
+
+                    <p:outputLabel for="duration" value="Duration:" />
+                    <p:inputText id="duration" required="true" requiredMessage="Duration is required."
+                                 value="#{tripsView.tripDTO.durationMinutes}"/>
+
+                    <p:outputLabel for="startingLocation" value="Starting location:" />
+                    <comp:location id="startingLocation"
+                                   x="#{tripsView.tripDTO.startingLocationXCoordinate}"
+                                   y="#{tripsView.tripDTO.startingLocationYCoordinate}"/>
+
+                    <p:outputLabel for="endLocation" value="End location:" />
+                    <comp:location id="endLocation"
+                                   x="#{tripsView.tripDTO.endLocationXCoordinate}"
+                                   y="#{tripsView.tripDTO.endLocationYCoordinate}"/>
+
+                    <p:outputLabel for="vehicleId" value="Vehicle ID:" />
+                    <p:inputText id="vehicleId"
+                                 value="#{tripsView.tripDTO.vehicleId}"/>
+
+                    <p:outputLabel for="customerId" value="Customer ID:" />
+                    <p:inputText id="customerId"
+                                 value="#{tripsView.tripDTO.customerId}"/>
+
+            </h:panelGrid>
+        </ui:define>
+
+        <ui:define name="submit_button">
+            <p:commandButton id="submit" value = "Submit" action="#{tripsView.addTrip}" icon="fa fa-fw fa-check-square-o"/>
+        </ui:define>
+        <p:messages id="messages" showDetail="true" closable="true">
+            <p:autoUpdate />
+        </p:messages>
+
+    </ui:composition>
+</f:view>
+</html>

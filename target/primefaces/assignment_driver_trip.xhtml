@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+        "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:comp="http://java.sun.com/jsf/composite/composite">
+<h:head>
+</h:head>
+<f:view>
+    <ui:composition template = "templates/dataEdit.xhtml">
+        <ui:define name="header" style="margin-bottom: 40px;">
+            <h2 style="font-family: 'Candara'; font-size: 30px;"> Add an assignment between a driver and a trip </h2>
+        </ui:define>
+
+        <ui:define name="editing_fields">
+            <h:panelGrid cellpadding="5" columns="1" style="margin-bottom:10px">
+                <p:outputLabel for="driverId" value="Driver ID:" />
+                <p:inputText id="driverId"
+                             value="#{assignmentView.assignmentDTO.driverId}"/>
+
+                <p:outputLabel for="tripId" value="Trip ID:" />
+                <p:inputText id="tripId"
+                             value="#{assignmentView.assignmentDTO.tripId}"/>
+            </h:panelGrid>
+        </ui:define>
+
+        <ui:define name="submit_button">
+            <p:commandButton id="submit" value = "Submit" action="#{assignmentView.assignDriverToTrip}" icon="fa fa-fw fa-check-square-o"/>
+        </ui:define>
+        <p:messages id="messages" showDetail="true" closable="true">
+            <p:autoUpdate />
+        </p:messages>
+
+    </ui:composition>
+</f:view>
+</html>

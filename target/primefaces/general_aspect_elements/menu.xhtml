@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html
+        PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+        "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://java.sun.com/jsf/html" xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:f="http://java.sun.com/jsf/core">
+
+<ui:composition>
+    <h:form>
+        <p:menubar>
+            <p:menuitem value="Home" icon="ui-icon-document" url="start_page.xhtml" />
+
+            <p:submenu label="Depots" icon="ui-icon-document">
+                <p:menuitem value="View" url="view_depots.xhtml" />
+                <p:menuitem value="Add" url="add_depot.xhtml" />
+            </p:submenu>
+
+            <p:submenu label="Trips" icon="ui-icon-document">
+                <p:menuitem value="View" url="view_trips.xhtml" />
+                <p:menuitem value="Add" url="add_trip.xhtml" />
+                <p:menuitem value="Search" url="trips_search_page.xhtml" />
+            </p:submenu>
+
+            <p:submenu label="Customers" icon="ui-icon-document">
+                <p:menuitem value="View" url="view_customers.xhtml" />
+                <p:menuitem value="Add" url="add_customer.xhtml" />
+            </p:submenu>
+
+            <p:submenu label="Drivers" icon="ui-icon-document">
+                <p:menuitem value="View" url="view_drivers.xhtml" />
+                <p:menuitem value="Add" url="add_driver.xhtml" />
+                <p:menuitem value="Assign" url="assignment_driver_trip.xhtml" />
+            </p:submenu>
+
+            <p:submenu label="Vehicles" icon="ui-icon-document">
+                <p:menuitem value="View" url="view_vehicles.xhtml" />
+                <p:menuitem value="Add" url="add_vehicle.xhtml" />
+            </p:submenu>
+
+            <p:menuitem value="External import" icon="ui-icon-document" url="external_import.xhtml" />
+        </p:menubar>
+    </h:form>
+</ui:composition>
+</html>

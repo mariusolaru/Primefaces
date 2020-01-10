@@ -1,0 +1,96 @@
+<?xml version = "1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+        "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+<h:head>
+</h:head>
+
+<ui:composition template="templates/dataView.xhtml">
+    <ui:define name="header">
+        <h2 style="font-family: Candara; margin-bottom: 30px;">Existing vehicles in the system</h2>
+    </ui:define>
+    <ui:define name="content">
+        <div style="align-content: flex-end; margin-bottom: 30px;">
+            <p:commandButton action="add_vehicle.xhtml"
+                             value="Add new vehicle" icon="fa fa-fw fa-cogs">
+            </p:commandButton>
+        </div>
+        <f:facet name="header"> vehicles </f:facet>
+        <p:dataTable value="#{vehiclesView.entities}" var="vehicleVar" style="width: 60%; text-align: center; align-self: center;"
+                     class="table table-striped table-hover table-bordered">
+            <p:column>
+                <f:facet name="header">Depot ID</f:facet>
+                <h:outputText id="depotId" value="#{vehicleVar.depot.id}"/>
+            </p:column>
+            <p:column>
+                <f:facet name="header">ID</f:facet>
+                <h:outputText id="vehicleId" value="#{vehicleVar.id}"/>
+            </p:column>
+            <p:column>
+                <f:facet name="header">Vehicle model</f:facet>
+                <h:outputText value="#{vehicleVar.model}"/>
+            </p:column>
+            <p:column>
+                <f:facet name="header">Required driver license type</f:facet>
+                <h:outputText value="#{vehicleVar.requiredDriverLicenseType}"/>
+            </p:column>
+            <p:column>
+                <f:facet name="header">Delete</f:facet>
+                <h:form>
+                    <p:commandButton actionListener="#{vehiclesView.delete(vehicleVar.id)}" value="Delete" icon="fa fa-fw fa-remove" ajax="false">
+                    </p:commandButton>
+                </h:form>
+            </p:column>
+            <p:column>
+                <f:facet name="header">Trips</f:facet>
+                <h:form>
+                    <p:commandButton icon="fa fa-fw fa-remove" value="View" actionListener="#{vehiclesView.redirectToViewTripsPage(vehicleVar.id)}">
+                    </p:commandButton>
+                </h:form>
+            </p:column>
+
+            <!--<ui:composition template="templates/dataView.xhtml">
+                <ui:define name="header">
+                    <h2 style="font-family: Candara; margin-bottom: 30px;">Existing trips for vehicle</h2>
+                </ui:define>
+                <ui:define name="content">
+                    <f:facet name="header"> trips </f:facet>
+                    <p:dataTable value="#{vehiclesView.getTripsByVehicle(vehicleVar.id)}" var="tripVar" style="width: 40%; text-align: center; align-self: center;"
+                                 class="table table-striped table-hover table-bordered">
+                        <p:column>
+                            <f:facet name="header">ID</f:facet>
+                            <h:outputText value="#{tripVar.id}"/>
+                        </p:column>
+                        <p:column>
+                            <f:facet name="header">Starting Time</f:facet>
+                            <h:outputText value="#{tripVar.startingTime}"/>
+                        </p:column>
+                        <p:column>
+                            <f:facet name="header">Duration (min):</f:facet>
+                            <h:outputText value="#{tripVar.durationMinutes}"/>
+                        </p:column>
+                        <p:column>
+                            <f:facet name="header">Delete</f:facet>
+                            <h:form>
+                                <p:commandButton actionListener="#{tripsView.delete(tripVar.id)}" value="Delete" icon="fa fa-fw fa-remove" ajax="false">
+                                </p:commandButton>
+                            </h:form>
+                        </p:column>
+                    </p:dataTable>
+                </ui:define>
+            </ui:composition>-->
+
+        </p:dataTable>
+    </ui:define>
+</ui:composition>
+
+</html>
+
+
+
+

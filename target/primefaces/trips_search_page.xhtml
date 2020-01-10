@@ -1,0 +1,58 @@
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+
+<h:head>
+    <style type="text/css">
+        .ui-datatable {
+            margin-bottom: 25px
+        }
+
+        .ui-datatable .ui-datatable-header {
+            text-align: right !important;
+        }
+
+        .ui-button-text-only .ui-button-text {
+            padding: 0.3em 0.4em;
+        }
+
+        .ui-selectcheckboxmenu-panel .ui-selectcheckboxmenu-header .ui-chkbox {
+            visibility: hidden;
+        }
+
+        .ui-filter-column .ui-column-customfilter .custom-filter {
+            width: 100%;
+            box-sizing: border-box;
+        }
+
+        .year-spinner input {
+            width: 100%;
+            box-sizing: border-box;
+        }
+    </style>
+</h:head>
+
+<h:body>
+    <h:form>
+        <p:panel id="panel" header="Search trips" style="margin-bottom:10px;">
+            <p:messages id="trips" />
+            <h:panelGrid columns="2" cellpadding="5">
+                <h:outputLabel for="startingTime" value="Starting time:" />
+                <p:inputText id="startingTime" value="#{tripsSearchPageView.searchTripDTO.startingTime}"/>
+
+                <p:outputLabel for="duration" value="Duration (minutes):" />
+                <p:inputText id="duration" value="#{tripsSearchPageView.searchTripDTO.durationMinutes}"/>
+
+                <p:outputLabel for="customer" value="Customer name:"  />
+                <p:inputText id="customer" value="#{tripsSearchPageView.searchTripDTO.customerName}" />
+
+                <p:outputLabel for="vehicle" value="Vehicle model:" />
+                <p:inputText id="vehicle" value="#{tripsSearchPageView.searchTripDTO.vehicleModel}"/>
+            </h:panelGrid>
+        </p:panel>
+
+        <p:commandButton value="Submit" update="panel" action="#{tripsSearchPageView.searchTrips}"/>
+    </h:form>
+</h:body>
+</html>

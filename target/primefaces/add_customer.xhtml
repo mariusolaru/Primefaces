@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+        "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:p="http://primefaces.org/ui">
+<h:head>
+</h:head>
+<f:view>
+    <ui:composition template = "templates/dataEdit.xhtml">
+        <ui:define name="header" style="margin-bottom: 40px;">
+            <h2 style="font-family: 'Candara'; font-size: 30px;"> Add new Customer </h2>
+        </ui:define>
+
+        <ui:define name="editing_fields">
+            <h:panelGrid cellpadding="5" columns="1" style="margin-bottom:10px">
+                <p:outputLabel for="name" value="Name:"/>
+                <p:inputText id="name" value="#{customersView.customerDTO.name}">
+                    <f:validateLength minimum="2" maximum="255"/>
+                </p:inputText>
+
+                <p:outputLabel for="requiredVehicleModel" value="Required Vehicle Model:" />
+                <p:inputText id="requiredVehicleModel" value="#{customersView.customerDTO.requiredVehicleModel}">
+                    <f:validateLength minimum="2" maximum="255"/>
+                </p:inputText>
+            </h:panelGrid>
+        </ui:define>
+
+        <ui:define name="submit_button">
+            <p:commandButton type="submit" value="Submit" action="#{customersView.addCustomer}" icon="fa fa-fw fa-check-square-o"/>
+        </ui:define>
+    </ui:composition>
+</f:view>
+</html>

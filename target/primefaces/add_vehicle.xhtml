@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+        "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:p="http://primefaces.org/ui">
+<h:head>
+</h:head>
+<f:view>
+    <ui:composition template = "templates/dataEdit.xhtml">
+        <ui:define name="header" style="margin-bottom: 40px;">
+            <h2 style="font-family: 'Candara'; font-size: 30px;"> Add new vehicle </h2>
+        </ui:define>
+        <ui:define name="editing_fields">
+            <h:panelGrid cellpadding="5" columns="1" style="margin-bottom:10px">
+                <p:outputLabel for="depot_id" value="Depot's id:"/>
+                <p:inputText id="depot_id" value="#{vehiclesView.vehicleDTO.depotId}">
+                </p:inputText>
+
+                <p:outputLabel for="model" value="Model:" />
+                <p:inputText id="model" value="#{vehiclesView.vehicleDTO.model}" required="true" requiredMessage="Model is required.">
+                    <f:validateLength minimum="2" maximum="255"/>
+                </p:inputText>
+
+                <p:outputLabel for="driver_license" value="Required driver license:" />
+                <p:inputText id="driver_license" value="#{vehiclesView.vehicleDTO.requiredDriverLicenseType}">
+                    <f:validateLength maximum="255"/>
+                </p:inputText>
+            </h:panelGrid>
+        </ui:define>
+
+        <ui:define name="submit_button">
+            <p:commandButton type="submit" value="Submit" action="#{vehiclesView.addVehicle}" icon="fa fa-fw fa-check-square-o"/>
+        </ui:define>
+    </ui:composition>
+</f:view>
+</html>

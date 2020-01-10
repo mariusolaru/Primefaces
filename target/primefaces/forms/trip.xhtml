@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+        "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets">
+<h:head>
+</h:head>
+<ui:composition>
+    <h:form>
+        <p:outputLabel for="starting_time" value="Starting time:" />
+        <p:inputText type="time" id="starting_time" converter="converters.StarttimeConvertor" value="#{trip.startingTime}"/>
+
+        <p:outputLabel for="duration" value="Duration:" />
+        <p:inputText id="duration" required="true" requiredMessage="Duration is required."
+                     value="#{trip.durationMinutes}"/>
+        <p:commandButton value="Submit"
+                         action="#{repositoryBean[action](trip)}">
+        </p:commandButton>
+    </h:form>
+</ui:composition>
+</html>

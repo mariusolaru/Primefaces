@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+        "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:p="http://primefaces.org/ui" xmlns:comp="http://java.sun.com/jsf/composite/composite">
+<h:head>
+</h:head>
+<f:view>
+    <ui:composition template = "templates/dataEdit.xhtml">
+        <ui:define name="header" style="margin-bottom: 40px;">
+            <h2 style="font-family: 'Candara'; font-size: 30px;"> Add new depot </h2>
+        </ui:define>
+
+        <ui:define name="editing_fields">
+            <h:panelGrid cellpadding="5" columns="1" style="margin-bottom:10px">
+                <p:outputLabel for="name" value="Name:"/>
+                <p:inputText id="name" value="#{depotsView.depotDTO.name}">
+                    <f:validateLength minimum="2" maximum="50"/>
+                </p:inputText>
+                <p:message for="name" />
+
+                <p:outputLabel for="capacity" value="Capacity:" />
+                <p:inputText id="capacity" value="#{depotsView.depotDTO.capacity}" required="true" requiredMessage="Capacity is required." >
+                    <f:validateLength minimum="1" maximum="50"/>
+                </p:inputText>
+                <p:message for="capacity" />
+
+                <p:outputLabel for="coordinates" value="Coordinates:" />
+                <comp:location id="coordinates"
+                               x="#{depotsView.depotDTO.xCoordinate}"
+                               y="#{depotsView.depotDTO.yCoordinate}"/>
+            </h:panelGrid>
+        </ui:define>
+
+        <p:growl id="messages" showDetail="true" autoUpdate="true" closable="true"/>
+
+        <ui:define name="submit_button">
+            <p:commandButton id="submit" type="submit" value="Submit" action="#{depotsView.addDepot}" icon="fa fa-fw fa-check-square-o"/>
+        </ui:define>
+
+    </ui:composition>
+</f:view>
+</html>

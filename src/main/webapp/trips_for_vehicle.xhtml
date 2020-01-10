@@ -1,0 +1,67 @@
+<?xml version = "1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+        "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+<h:head>
+</h:head>
+
+<ui:composition template="templates/dataView.xhtml">
+    <ui:define name="header">
+        <h2 style="font-family: Candara; margin-bottom: 30px;">Existing trips for selected vehicle</h2>
+    </ui:define>
+    <ui:define name="content">
+        <p:dataTable id='tripsList' value="#{vehiclesView.getTripsByVehicle(param['vehicleId'])}" var="tripVar" style="width: 60%; text-align: center; align-self: center;"
+                     class="table table-striped table-hover table-bordered">
+            <p:column>
+                <f:facet name="header">ID</f:facet>
+                <h:outputText value="#{tripVar.id}"/>
+            </p:column>
+            <p:column>
+                <f:facet name="header">Starting Time</f:facet>
+                <h:outputText value="#{tripVar.startingTime}"/>
+            </p:column>
+            <p:column>
+                <f:facet name="header">Duration (min):</f:facet>
+                <h:outputText value="#{tripVar.durationMinutes}"/>
+            </p:column>
+            <p:column>
+                <f:facet name="header">Edit</f:facet>
+                <p:growl id="message" showDetail="true" />
+                <p:commandButton icon="fa fa-fw fa-edit" update="message" value="Edit" action="#{editTrip.setTrip(tripVar)}">
+                    <p:confirm header="Edit trip" message="Edit the information for the chosen trip" icon="ui-icon-alert" />
+                </p:commandButton>
+                <p:confirmDialog id="dialog" global="true" showEffect="fade" hideEffect="fade" widgetVar="test">
+
+                    <h:panelGrid columns="3" cellpadding="5" style="margin: 0 auto;">
+                        <p:outputLabel for="eStartingTime" value="Starting time:" />
+                        <p:inputText id="eStartingTime" value="#{editTrip.trip.startingTime}" />
+                        <p:message for="eStartingTime" />
+
+                        <p:outputLabel for="eDuration" value="Duration" />
+                        <p:inputText id="eDuration" value="#{editTrip.trip.durationMinutes}" />
+                        <p:message for="eDuration" />
+                    </h:panelGrid>
+                    <div style="margin-left: 100px;">
+                        <p:commandButton value="Yes" type="button" action="#{editTrip.editTrip}" styleClass="ui-confirmdialog-yes" icon="fa fa-fw fa-check" />
+                        <p:commandButton value="No" type="button" styleClass="ui-confirmdialog-no" icon="fa fa-fw fa-close" />
+                    </div>
+                </p:confirmDialog>
+            </p:column>
+
+            <p:column>
+                <f:facet name="header">Delete</f:facet>
+                <h:form>
+                    <p:commandButton actionListener="#{tripsView.delete(tripVar.id)}" icon="fa fa-fw fa-remove" value="Delete">
+                    </p:commandButton>
+                </h:form>
+            </p:column>
+        </p:dataTable>
+    </ui:define>
+</ui:composition>
+
+</html>
